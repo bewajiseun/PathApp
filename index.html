@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pathfinder - Career Discovery for Future Leaders</title>
+  <meta name="description" content="Pathfinder helps students aged 13-17 discover exciting future careers through interactive daily micro-tasks, gamified rewards, and hands-on career insights.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- App Header / Navigation -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand" id="brand-home" title="Go to Today's Tasks">
+        <div class="logo-icon">✨</div>
+        <div class="brand-text">
+          <span class="brand-name">PATHFINDER</span>
+          <span class="brand-tagline">Career Discovery</span>
+        </div>
+      </div>
+
+      <div class="header-stats">
+        <div class="stat-pill streak-pill" title="Daily Streak">
+          <span class="stat-icon">🔥</span>
+          <span class="stat-value" id="user-streak">4</span>
+          <span class="stat-label">Day Streak</span>
+        </div>
+        <div class="stat-pill xp-pill" title="Total Experience Points">
+          <span class="stat-icon">⚡</span>
+          <span class="stat-value" id="user-xp">750</span>
+          <span class="stat-label">XP</span>
+        </div>
+        <div class="user-avatar" id="user-avatar" title="Student Profile">
+          <span class="avatar-emoji">🚀</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main View Container -->
+  <main class="app-main">
+
+    <!-- ==================== SCREEN 1: TODAY'S TASK ==================== -->
+    <section id="screen-today" class="screen active">
+      
+      <!-- Welcome Hero Banner -->
+      <div class="hero-banner">
+        <div class="hero-content">
+          <div class="welcome-badge">👋 Hello, Future Pioneer!</div>
+          <h1 class="hero-title">What will you explore today?</h1>
+          <p class="hero-subtitle">Complete 5-minute daily micro-tasks to unlock real-world career skills, level up your XP, and discover your dream path.</p>
+        </div>
+        <div class="hero-illustration">
+          <div class="floating-card float-1">
+            <span class="fc-icon">🤖</span> AI Engineer
+          </div>
+          <div class="floating-card float-2">
+            <span class="fc-icon">🎮</span> Game Architect
+          </div>
+          <div class="floating-card float-3">
+            <span class="fc-icon">🛡️</span> Cyber Defender
+          </div>
+        </div>
+      </div>
+
+      <!-- Featured Daily Spotlight Task -->
+      <div class="spotlight-section">
+        <div class="section-header">
+          <h2 class="section-title">🌟 Today's Spotlight Task</h2>
+          <span class="time-badge">Refreshes in 14h</span>
+        </div>
+        <div class="spotlight-card" id="featured-task-card">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- Task Discovery & Filter Bar -->
+      <div class="discovery-section">
+        <div class="section-header">
+          <h2 class="section-title">🎯 Explore Careers</h2>
+          <div class="category-filters">
+            <button class="filter-chip active" data-category="all">All Tracks</button>
+            <button class="filter-chip" data-category="tech">Tech & AI</button>
+            <button class="filter-chip" data-category="creative">Design & Gaming</button>
+            <button class="filter-chip" data-category="eco">Science & Climate</button>
+            <button class="filter-chip" data-category="business">Future Business</button>
+          </div>
+        </div>
+
+        <!-- Task Cards Grid -->
+        <div class="task-grid" id="task-grid">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- User Progress & Unlocked Badges Bar -->
+      <div class="badges-section">
+        <div class="section-header">
+          <h2 class="section-title">🏆 Your Unlocked Career Badges</h2>
+          <span class="badge-count-text" id="badge-count-text">2 of 6 Unlocked</span>
+        </div>
+        <div class="badges-row" id="badges-container">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ==================== SCREEN 2: TASK DETAILS ==================== -->
+    <section id="screen-details" class="screen">
+      
+      <!-- Back Navigation Header -->
+      <div class="details-top-bar">
+        <button class="btn-back" id="btn-back-to-today">
+          <span class="arrow">←</span> Back to Today's Tasks
+        </button>
+        <span class="details-category-pill" id="detail-category-pill">Tech & AI</span>
+      </div>
+
+      <!-- Career Overview Header Card -->
+      <div class="career-header-card" id="detail-header-card">
+        <!-- Populated by JS -->
+      </div>
+
+      <!-- Quick Career Insights Bar -->
+      <div class="career-stats-row" id="detail-stats-row">
+        <!-- Populated by JS -->
+      </div>
+
+      <!-- Interactive Micro-Task Activity Container -->
+      <div class="activity-container">
+        <div class="activity-header">
+          <div class="step-indicator">
+            <span class="step-badge">Interactive Mission</span>
+            <span class="step-progress-text" id="step-progress-text">Step 1 of 2</span>
+          </div>
+          <h2 class="activity-title" id="detail-mission-title">Mission Overview</h2>
+        </div>
+
+        <!-- Activity Body / Hands-on Studio -->
+        <div class="activity-body" id="activity-body">
+          <!-- Populated by JS dynamically based on task -->
+        </div>
+
+        <!-- Feedback / Hint Box -->
+        <div class="feedback-box" id="feedback-box" style="display: none;">
+          <div class="feedback-icon" id="feedback-icon">💡</div>
+          <div class="feedback-text" id="feedback-text">Select an option above to test your skills!</div>
+        </div>
+
+        <!-- Complete Action Bar -->
+        <div class="activity-footer">
+          <div class="reward-preview">
+            <span class="reward-icon">⚡</span>
+            <span class="reward-text">Completion Reward: <strong id="detail-reward-xp">+150 XP</strong></span>
+          </div>
+          <button class="btn-primary btn-complete-task" id="btn-submit-task" disabled>
+            Complete Task & Claim XP ✨
+          </button>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ==================== SCREEN 3: TASK COMPLETE ==================== -->
+    <section id="screen-complete" class="screen">
+      
+      <!-- Canvas for Celebratory Confetti -->
+      <canvas id="confetti-canvas"></canvas>
+
+      <div class="complete-card">
+        <div class="celebration-badge">
+          <span class="badge-sparkle">✨</span>
+          <span class="badge-icon" id="complete-icon">🎉</span>
+        </div>
+
+        <h1 class="complete-title">Mission Accomplished!</h1>
+        <p class="complete-subtitle">Great job! You've taken another step toward discovering your future career.</p>
+
+        <!-- XP & Streak Gain Banner -->
+        <div class="rewards-summary-box">
+          <div class="reward-stat-item">
+            <span class="rs-icon">⚡</span>
+            <div class="rs-data">
+              <span class="rs-value" id="gained-xp">+150 XP</span>
+              <span class="rs-label">XP Earned</span>
+            </div>
+          </div>
+          <div class="divider-vertical"></div>
+          <div class="reward-stat-item">
+            <span class="rs-icon">🔥</span>
+            <div class="rs-data">
+              <span class="rs-value" id="gained-streak">+1 Day</span>
+              <span class="rs-label">Streak Active</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Skills Unlocked List -->
+        <div class="unlocked-skills-card">
+          <h3 class="unlocked-title">🧠 Skills Added to Your Pathfinder Profile</h3>
+          <div class="skills-tags-row" id="complete-skills-tags">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <!-- Unlocked Badge Highlight (if any) -->
+        <div class="new-badge-unlocked" id="new-badge-unlocked-box">
+          <div class="nb-icon" id="complete-badge-icon">🏆</div>
+          <div class="nb-info">
+            <span class="nb-tag">BADGE UNLOCKED</span>
+            <h4 class="nb-title" id="complete-badge-title">AI Prompt Pioneer</h4>
+          </div>
+        </div>
+
+        <!-- Recommended Related Careers -->
+        <div class="recommendations-box">
+          <h4 class="rec-title">🚀 Careers matching this skill set:</h4>
+          <div class="rec-chips-row" id="complete-rec-chips">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="complete-actions">
+          <button class="btn-primary btn-large" id="btn-finish-return">
+            Back to Today's Tasks
+          </button>
+          <button class="btn-secondary btn-large" id="btn-try-next">
+            Explore Next Task →
+          </button>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Global Footer -->
+  <footer class="app-footer">
+    <p>Pathfinder © 2026 • Designed for Future Innovators aged 13–17</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
