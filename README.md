@@ -20,7 +20,9 @@ Pathfinder aims to make career exploration simpler and more actionable.
 
 ## What We Built
 
-For this MVP, we focused on one simple flow:
+### Week 4 — Core Task Experience
+
+For Week 4, we focused on one simple flow:
 
 **Today's Task → Task Details → Task Complete**
 
@@ -36,11 +38,37 @@ Students can view the task information and start the task.
 
 Students see that the task has been completed and view their earned XP and progress.
 
+### Week 5 — Progress Tracking
+
+For Week 5, we extended the existing task experience with a simple progress-tracking flow:
+
+**Task Complete → My Progress → Completed Task Details**
+
+Students can:
+
+- View their completed tasks
+- See their earned XP
+- See their current streak
+- Open a completed task to view its details
+- Return to their progress
+
+### My Progress
+
+The My Progress screen gives students a simple view of what they have accomplished so far.
+
+### Completed Task Details
+
+Students can select a completed task and view its details.
+
 ## Key Product Decision
 
-Instead of building the full Pathfinder product, we focused on one complete user journey.
+Instead of building the full Pathfinder product, we are building the experience in small, complete flows.
 
-This allowed us to build and test the core experience before adding more features.
+Week 4 focused on helping a student complete one career exploration task.
+
+Week 5 extended that experience by helping the student see and review their progress.
+
+This allows us to build and test the product incrementally before adding more features.
 
 ## Design Direction
 
@@ -64,8 +92,14 @@ We use clear layouts, rounded elements and friendly colours to keep the experien
 
 **MVP / Prototype**
 
-The current version focuses on the career-learning task experience.
+The current version includes:
+
+- A three-screen task experience
+- Task completion
+- XP feedback
+- Progress tracking
+- Completed task details
 
 ## What's Next
 
-The next step is to test the flow, collect feedback and decide what to improve next.
+The next step is to test the combined experience, collect feedback and decide what should be improved or built next.

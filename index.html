@@ -23,6 +23,16 @@
         </div>
       </div>
 
+      <!-- Main Navigation Tabs -->
+      <nav class="app-nav">
+        <button class="nav-tab active" id="nav-today" title="Today's Tasks">
+          🎯 Today's Tasks
+        </button>
+        <button class="nav-tab" id="nav-progress" title="My Progress">
+          📊 My Progress
+        </button>
+      </nav>
+
       <div class="header-stats">
         <div class="stat-pill streak-pill" title="Daily Streak">
           <span class="stat-icon">🔥</span>
@@ -34,7 +44,7 @@
           <span class="stat-value" id="user-xp">750</span>
           <span class="stat-label">XP</span>
         </div>
-        <div class="user-avatar" id="user-avatar" title="Student Profile">
+        <div class="user-avatar" id="user-avatar" title="Student Profile (My Progress)">
           <span class="avatar-emoji">🚀</span>
         </div>
       </div>
@@ -230,8 +240,208 @@
           <button class="btn-primary btn-large" id="btn-finish-return">
             Back to Today's Tasks
           </button>
+          <button class="btn-secondary btn-large" id="btn-view-progress">
+            View My Progress 📊
+          </button>
           <button class="btn-secondary btn-large" id="btn-try-next">
             Explore Next Task →
+          </button>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ==================== SCREEN 4: MY PROGRESS ==================== -->
+    <section id="screen-progress" class="screen">
+      
+      <!-- Top Navigation Bar -->
+      <div class="details-top-bar">
+        <button class="btn-back" id="btn-progress-back-to-today">
+          <span class="arrow">←</span> Back to Today's Tasks
+        </button>
+        <span class="details-category-pill">Student Progress</span>
+      </div>
+
+      <!-- Progress Overview Hero Banner -->
+      <div class="progress-hero">
+        <div class="progress-hero-content">
+          <div class="welcome-badge">📊 Career Journey Overview</div>
+          <h1 class="hero-title">Your Progress & Mastery</h1>
+          <p class="hero-subtitle">Track your career exploration milestones, completed micro-tasks, unlocked badges, and acquired skill set.</p>
+        </div>
+        <div class="progress-stats-grid">
+          <div class="progress-stat-card">
+            <span class="ps-icon">⚡</span>
+            <div class="ps-data">
+              <span class="ps-val" id="progress-total-xp">750</span>
+              <span class="ps-label">Total XP Earned</span>
+            </div>
+          </div>
+          <div class="progress-stat-card">
+            <span class="ps-icon">🔥</span>
+            <div class="ps-data">
+              <span class="ps-val" id="progress-streak">4 Days</span>
+              <span class="ps-label">Current Streak</span>
+            </div>
+          </div>
+          <div class="progress-stat-card">
+            <span class="ps-icon">🎯</span>
+            <div class="ps-data">
+              <span class="ps-val" id="progress-completed-count">1 of 6</span>
+              <span class="ps-label">Tasks Completed</span>
+            </div>
+          </div>
+          <div class="progress-stat-card">
+            <span class="ps-icon">🏆</span>
+            <div class="ps-data">
+              <span class="ps-val" id="progress-badge-count">1 of 6</span>
+              <span class="ps-label">Badges Unlocked</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Overall Completion Progress Bar Card -->
+      <div class="completion-bar-card">
+        <div class="cbc-header">
+          <span class="cbc-title">Exploration Mastery Progress</span>
+          <span class="cbc-percentage" id="progress-percentage">17% Complete</span>
+        </div>
+        <div class="ps-bar-container">
+          <div class="ps-bar-fill" id="progress-bar-fill" style="width: 17%;"></div>
+        </div>
+      </div>
+
+      <!-- Completed Tasks Grid Section -->
+      <div class="discovery-section">
+        <div class="section-header">
+          <h2 class="section-title">✅ Completed Micro-Tasks</h2>
+          <span class="time-badge" id="completed-count-badge">1 Task Done</span>
+        </div>
+
+        <!-- Grid of Completed Tasks -->
+        <div class="task-grid" id="completed-task-grid">
+          <!-- Populated by JS -->
+        </div>
+
+        <!-- Empty State (Hidden when tasks are completed) -->
+        <div class="empty-state-card" id="completed-empty-state" style="display: none;">
+          <div class="empty-icon">🎯</div>
+          <h3>No tasks completed yet!</h3>
+          <p>Start your first micro-task from Today's Tasks to unlock career insights and earn XP.</p>
+          <button class="btn-primary" id="btn-empty-start">Explore Today's Tasks →</button>
+        </div>
+      </div>
+
+      <!-- Mastered Skills Section -->
+      <div class="badges-section" style="margin-bottom: 36px;">
+        <div class="section-header">
+          <h2 class="section-title">🧠 Acquired Career Skills</h2>
+          <span class="badge-count-text" id="skills-count-text">3 Skills Mastered</span>
+        </div>
+        <div class="skills-tags-row" id="progress-acquired-skills">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- Unlocked Badges Showcase -->
+      <div class="badges-section">
+        <div class="section-header">
+          <h2 class="section-title">🏆 Unlocked Badges Showcase</h2>
+          <span class="badge-count-text" id="progress-badge-summary">1 of 6 Unlocked</span>
+        </div>
+        <div class="badges-row" id="progress-badges-container">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ==================== SCREEN 5: COMPLETED TASK DETAILS ==================== -->
+    <section id="screen-completed-details" class="screen">
+      
+      <!-- Back Navigation Bar -->
+      <div class="details-top-bar">
+        <button class="btn-back" id="btn-completed-back-to-progress">
+          <span class="arrow">←</span> Back to My Progress
+        </button>
+        <span class="details-category-pill" id="completed-detail-category-pill">Tech & AI</span>
+      </div>
+
+      <!-- Completed Task Header Card -->
+      <div class="career-header-card completed-header-border" id="completed-detail-header-card">
+        <!-- Populated by JS -->
+      </div>
+
+      <!-- Career Stats Row -->
+      <div class="career-stats-row" id="completed-detail-stats-row">
+        <!-- Populated by JS -->
+      </div>
+
+      <!-- Mastered Task Solution & Scenario Review Container -->
+      <div class="activity-container">
+        <div class="activity-header">
+          <div class="step-indicator">
+            <span class="step-badge" style="background: rgba(16,185,129,0.2); color: #34d399; border-color: rgba(16,185,129,0.4);">
+              Task Completed ✓
+            </span>
+            <span class="step-progress-text" id="completed-detail-date">Mastered</span>
+          </div>
+          <h2 class="activity-title" id="completed-detail-mission-title">Mission Breakdown & Solution</h2>
+        </div>
+
+        <div class="activity-body">
+          <div class="activity-scenario-card">
+            <strong>Scenario Encountered:</strong><br>
+            <span id="completed-detail-scenario">Prompt text...</span>
+          </div>
+
+          <!-- Mastered Strategy Card -->
+          <div class="completed-solution-card">
+            <div class="solution-header">
+              <span class="solution-badge">✨ Your Selected Strategy</span>
+            </div>
+            <div class="solution-text" id="completed-detail-choice">
+              Selected option text...
+            </div>
+            <div class="solution-feedback" id="completed-detail-feedback">
+              Feedback explanation...
+            </div>
+          </div>
+
+          <!-- Skills Acquired Card -->
+          <div class="unlocked-skills-card" style="margin-top: 24px;">
+            <h3 class="unlocked-title">🧠 Skills Mastered in This Task:</h3>
+            <div class="skills-tags-row" id="completed-detail-skills">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+
+          <!-- Badge Unlocked Highlight -->
+          <div class="new-badge-unlocked" id="completed-detail-badge-box">
+            <div class="nb-icon" id="completed-detail-badge-icon">🏆</div>
+            <div class="nb-info">
+              <span class="nb-tag">BADGE EARNED</span>
+              <h4 class="nb-title" id="completed-detail-badge-name">Badge Name</h4>
+            </div>
+          </div>
+
+          <!-- Recommended Related Careers -->
+          <div class="recommendations-box">
+            <h4 class="rec-title">🚀 Recommended Next Steps & Career Paths:</h4>
+            <div class="rec-chips-row" id="completed-detail-recs">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer Actions -->
+        <div class="activity-footer" style="justify-content: space-between;">
+          <button class="btn-secondary" id="btn-return-progress-bottom">
+            ← Return to My Progress
+          </button>
+          <button class="btn-primary" id="btn-explore-more">
+            Explore Today's Tasks →
           </button>
         </div>
       </div>

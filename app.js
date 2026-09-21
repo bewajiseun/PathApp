@@ -275,27 +275,84 @@ function showScreen(screenId) {
     targetScreen.classList.add('active');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
+
+  // Update Header Navigation Active Tabs
+  const navToday = document.getElementById('nav-today');
+  const navProgress = document.getElementById('nav-progress');
+
+  if (navToday && navProgress) {
+    if (screenId === 'screen-today' || screenId === 'screen-details') {
+      navToday.classList.add('active');
+      navProgress.classList.remove('active');
+    } else if (screenId === 'screen-progress' || screenId === 'screen-completed-details') {
+      navProgress.classList.add('active');
+      navToday.classList.remove('active');
+    } else {
+      navToday.classList.remove('active');
+      navProgress.classList.remove('active');
+    }
+  }
 }
 
 function bindNavigationEvents() {
   // Brand Click -> Today Screen
   const brandBtn = document.getElementById('brand-home');
   if (brandBtn) {
-    brandBtn.addEventListener('click', () => showScreen('screen-today'));
+    brandBtn.addEventListener('click', () => {
+      renderTodayScreen();
+      showScreen('screen-today');
+    });
+  }
+
+  // Header Nav Tabs
+  const navToday = document.getElementById('nav-today');
+  if (navToday) {
+    navToday.addEventListener('click', () => {
+      renderTodayScreen();
+      showScreen('screen-today');
+    });
+  }
+
+  const navProgress = document.getElementById('nav-progress');
+  if (navProgress) {
+    navProgress.addEventListener('click', () => {
+      renderProgressScreen();
+      showScreen('screen-progress');
+    });
+  }
+
+  // Avatar Click -> My Progress Screen
+  const userAvatar = document.getElementById('user-avatar');
+  if (userAvatar) {
+    userAvatar.addEventListener('click', () => {
+      renderProgressScreen();
+      showScreen('screen-progress');
+    });
   }
 
   // Back Button from Details -> Today Screen
   const btnBack = document.getElementById('btn-back-to-today');
   if (btnBack) {
-    btnBack.addEventListener('click', () => showScreen('screen-today'));
+    btnBack.addEventListener('click', () => {
+      renderTodayScreen();
+      showScreen('screen-today');
+    });
   }
 
-  // Complete Screen CTAs
+  // Task Complete Screen Buttons
   const btnFinishReturn = document.getElementById('btn-finish-return');
   if (btnFinishReturn) {
     btnFinishReturn.addEventListener('click', () => {
       renderTodayScreen();
       showScreen('screen-today');
+    });
+  }
+
+  const btnViewProgress = document.getElementById('btn-view-progress');
+  if (btnViewProgress) {
+    btnViewProgress.addEventListener('click', () => {
+      renderProgressScreen();
+      showScreen('screen-progress');
     });
   }
 
@@ -305,6 +362,48 @@ function bindNavigationEvents() {
       // Find next incomplete task
       const nextTask = CAREER_TASKS.find(t => !APP_STATE.completedTaskIds.has(t.id)) || CAREER_TASKS[0];
       openTaskDetails(nextTask.id);
+    });
+  }
+
+  // My Progress Screen Buttons
+  const btnProgressBack = document.getElementById('btn-progress-back-to-today');
+  if (btnProgressBack) {
+    btnProgressBack.addEventListener('click', () => {
+      renderTodayScreen();
+      showScreen('screen-today');
+    });
+  }
+
+  const btnEmptyStart = document.getElementById('btn-empty-start');
+  if (btnEmptyStart) {
+    btnEmptyStart.addEventListener('click', () => {
+      renderTodayScreen();
+      showScreen('screen-today');
+    });
+  }
+
+  // Completed Task Details Buttons
+  const btnCompletedBack = document.getElementById('btn-completed-back-to-progress');
+  if (btnCompletedBack) {
+    btnCompletedBack.addEventListener('click', () => {
+      renderProgressScreen();
+      showScreen('screen-progress');
+    });
+  }
+
+  const btnReturnProgressBottom = document.getElementById('btn-return-progress-bottom');
+  if (btnReturnProgressBottom) {
+    btnReturnProgressBottom.addEventListener('click', () => {
+      renderProgressScreen();
+      showScreen('screen-progress');
+    });
+  }
+
+  const btnExploreMore = document.getElementById('btn-explore-more');
+  if (btnExploreMore) {
+    btnExploreMore.addEventListener('click', () => {
+      renderTodayScreen();
+      showScreen('screen-today');
     });
   }
 }
@@ -698,4 +797,248 @@ function triggerConfetti() {
   }
 
   animate();
+}
+
+// ==================== SCREEN 4: MY PROGRESS LOGIC ====================
+
+function renderProgressScreen() {
+  renderHeaderStats();
+
+  const totalXP = APP_STATE.userXP;
+  const streak = APP_STATE.userStreak;
+  const completedCount = APP_STATE.completedTaskIds.size;
+  const totalTasks = CAREER_TASKS.length;
+  const badgesCount = APP_STATE.unlockedBadges.size;
+  const totalBadges = ALL_BADGES.length;
+  const completionPercentage = Math.round((completedCount / totalTasks) * 100);
+
+  // Stats display
+  const xpEl = document.getElementById('progress-total-xp');
+  const streakEl = document.getElementById('progress-streak');
+  const completedCountEl = document.getElementById('progress-completed-count');
+  const badgeCountEl = document.getElementById('progress-badge-count');
+  const percentageEl = document.getElementById('progress-percentage');
+  const barFillEl = document.getElementById('progress-bar-fill');
+  const completedBadgeCount = document.getElementById('completed-count-badge');
+
+  if (xpEl) xpEl.textContent = totalXP;
+  if (streakEl) streakEl.textContent = `${streak} Days`;
+  if (completedCountEl) completedCountEl.textContent = `${completedCount} of ${totalTasks}`;
+  if (badgeCountEl) badgeCountEl.textContent = `${badgesCount} of ${totalBadges}`;
+  if (percentageEl) percentageEl.textContent = `${completionPercentage}% Complete`;
+  if (barFillEl) barFillEl.style.width = `${completionPercentage}%`;
+  if (completedBadgeCount) completedBadgeCount.textContent = `${completedCount} Task${completedCount === 1 ? '' : 's'} Done`;
+
+  // Render Completed Tasks Grid
+  renderCompletedTasksGrid();
+
+  // Render Acquired Skills
+  renderAcquiredSkills();
+
+  // Render Unlocked Badges Showcase
+  renderProgressBadgesShowcase();
+}
+
+function renderCompletedTasksGrid() {
+  const completedGrid = document.getElementById('completed-task-grid');
+  const emptyState = document.getElementById('completed-empty-state');
+  if (!completedGrid) return;
+
+  const completedTasks = CAREER_TASKS.filter(task => APP_STATE.completedTaskIds.has(task.id));
+
+  if (completedTasks.length === 0) {
+    completedGrid.style.display = 'none';
+    if (emptyState) emptyState.style.display = 'flex';
+    return;
+  }
+
+  if (emptyState) emptyState.style.display = 'none';
+  completedGrid.style.display = 'grid';
+  completedGrid.innerHTML = '';
+
+  completedTasks.forEach(task => {
+    const cardEl = document.createElement('div');
+    cardEl.className = 'task-card completed';
+    cardEl.style.cursor = 'pointer';
+    cardEl.innerHTML = `
+      <div class="card-top">
+        <div class="card-icon-box ${task.bgClass}">
+          ${task.icon}
+        </div>
+        <span class="card-status status-done">
+          Completed ✓
+        </span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">${task.title}</h3>
+        <p class="card-desc">${task.description}</p>
+      </div>
+      <div class="card-footer">
+        <div class="card-meta">
+          <span>⏱️ ${task.duration}</span>
+          <span>•</span>
+          <span>${task.career}</span>
+        </div>
+        <span class="card-xp">+${task.xp} XP</span>
+      </div>
+    `;
+
+    cardEl.addEventListener('click', () => openCompletedTaskDetails(task.id));
+    completedGrid.appendChild(cardEl);
+  });
+}
+
+function renderAcquiredSkills() {
+  const skillsContainer = document.getElementById('progress-acquired-skills');
+  const countText = document.getElementById('skills-count-text');
+  if (!skillsContainer) return;
+
+  const acquiredSkillsSet = new Set();
+  CAREER_TASKS.forEach(task => {
+    if (APP_STATE.completedTaskIds.has(task.id)) {
+      task.skills.forEach(skill => acquiredSkillsSet.add(skill));
+    }
+  });
+
+  const skillsList = Array.from(acquiredSkillsSet);
+  if (countText) {
+    countText.textContent = `${skillsList.length} Skill${skillsList.length === 1 ? '' : 's'} Mastered`;
+  }
+
+  if (skillsList.length === 0) {
+    skillsContainer.innerHTML = '<span class="meta-info">Complete tasks to earn career skills!</span>';
+    return;
+  }
+
+  skillsContainer.innerHTML = skillsList.map(skill => `
+    <span class="skill-tag" style="background: rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.3); color: #34d399;">
+      ✓ ${skill}
+    </span>
+  `).join('');
+}
+
+function renderProgressBadgesShowcase() {
+  const container = document.getElementById('progress-badges-container');
+  const countText = document.getElementById('progress-badge-summary');
+  if (!container) return;
+
+  const unlockedCount = APP_STATE.unlockedBadges.size;
+  if (countText) {
+    countText.textContent = `${unlockedCount} of ${ALL_BADGES.length} Unlocked`;
+  }
+
+  container.innerHTML = '';
+  ALL_BADGES.forEach(badge => {
+    const isUnlocked = APP_STATE.unlockedBadges.has(badge.id);
+    const badgeEl = document.createElement('div');
+    badgeEl.className = `badge-item ${isUnlocked ? 'unlocked' : 'locked'}`;
+    badgeEl.innerHTML = `
+      <div class="badge-icon-box">${badge.icon}</div>
+      <div class="badge-name">${badge.name}</div>
+      <span class="badge-status-tag ${isUnlocked ? 'bs-unlocked' : 'bs-locked'}">
+        ${isUnlocked ? 'Unlocked' : 'Locked'}
+      </span>
+    `;
+    container.appendChild(badgeEl);
+  });
+}
+
+// ==================== SCREEN 5: COMPLETED TASK DETAILS LOGIC ====================
+
+function openCompletedTaskDetails(taskId) {
+  APP_STATE.activeCompletedTaskId = taskId;
+
+  const task = CAREER_TASKS.find(t => t.id === taskId);
+  if (!task) return;
+
+  // Category Pill
+  const categoryPill = document.getElementById('completed-detail-category-pill');
+  if (categoryPill) categoryPill.textContent = task.categoryName;
+
+  // Header Card
+  const headerCard = document.getElementById('completed-detail-header-card');
+  if (headerCard) {
+    headerCard.innerHTML = `
+      <div class="detail-icon-box ${task.bgClass}">
+        ${task.icon}
+      </div>
+      <div class="detail-header-info">
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+          <span class="status-done" style="font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 9999px;">Completed ✓</span>
+          <span class="meta-info">⏱️ ${task.duration} • ${task.difficulty}</span>
+        </div>
+        <h1 class="detail-title">${task.career}: ${task.title}</h1>
+        <p class="detail-subtitle">${task.description}</p>
+      </div>
+    `;
+  }
+
+  // Quick Stats Row
+  const statsRow = document.getElementById('completed-detail-stats-row');
+  if (statsRow) {
+    statsRow.innerHTML = `
+      <div class="career-stat-card">
+        <span class="csc-icon">💰</span>
+        <div class="csc-data">
+          <span class="csc-label">Avg Entry Salary</span>
+          <span class="csc-val">${task.salary}</span>
+        </div>
+      </div>
+      <div class="career-stat-card">
+        <span class="csc-icon">📈</span>
+        <div class="csc-data">
+          <span class="csc-label">Job Market Demand</span>
+          <span class="csc-val">${task.demand}</span>
+        </div>
+      </div>
+      <div class="career-stat-card">
+        <span class="csc-icon">⚡</span>
+        <div class="csc-data">
+          <span class="csc-label">XP Claimed</span>
+          <span class="csc-val">+${task.xp} XP</span>
+        </div>
+      </div>
+    `;
+  }
+
+  // Scenario
+  const scenarioEl = document.getElementById('completed-detail-scenario');
+  if (scenarioEl) scenarioEl.textContent = task.scenarioPrompt;
+
+  // Find correct option and strategy feedback
+  const correctOption = task.options.find(o => o.correct) || task.options[0];
+  const choiceEl = document.getElementById('completed-detail-choice');
+  const feedbackEl = document.getElementById('completed-detail-feedback');
+
+  if (choiceEl) choiceEl.textContent = correctOption.text;
+  if (feedbackEl) feedbackEl.textContent = correctOption.feedback;
+
+  // Skills
+  const skillsRow = document.getElementById('completed-detail-skills');
+  if (skillsRow) {
+    skillsRow.innerHTML = task.skills.map(s => `
+      <span class="skill-tag" style="background: rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.3); color: #34d399;">✓ ${s}</span>
+    `).join('');
+  }
+
+  // Badge
+  const badgeBox = document.getElementById('completed-detail-badge-box');
+  const badgeIcon = document.getElementById('completed-detail-badge-icon');
+  const badgeName = document.getElementById('completed-detail-badge-name');
+  if (badgeBox && badgeIcon && badgeName) {
+    badgeIcon.textContent = task.badgeIcon;
+    badgeName.textContent = task.badgeName;
+    badgeBox.style.display = 'flex';
+  }
+
+  // Recommended Careers
+  const recsRow = document.getElementById('completed-detail-recs');
+  if (recsRow) {
+    recsRow.innerHTML = task.recommendedCareers.map(c => `
+      <span class="rec-chip">🚀 ${c}</span>
+    `).join('');
+  }
+
+  // Switch Screen
+  showScreen('screen-completed-details');
 }

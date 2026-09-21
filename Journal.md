@@ -76,42 +76,110 @@ Shows information about the task and allows the student to start it.
 
 Shows the completed state and the XP earned.
 
+# Week 5 — Progress Tracking
+
+## What We Continued
+
+Week 5 continues the Pathfinder MVP from Week 4.
+
+In Week 4, we built the core task flow:
+
+**Today's Task → Task Details → Task Complete**
+
+For Week 5, we extended this flow to help students understand their progress after completing tasks.
+
+## What We Chose
+
+We added a simple progress-tracking flow:
+
+**Task Complete → My Progress → Completed Task Details**
+
+The student can:
+
+1. Complete a task
+2. View their progress
+3. See their completed tasks
+4. Open a completed task
+5. Return to their progress
+
+## Why We Chose This Flow
+
+After completing a task, the student needs a simple way to see what they have accomplished.
+
+The goal was to move Pathfinder from simply helping students complete tasks to helping them see their journey.
+
+## What We Built
+
+### My Progress
+
+The progress screen shows:
+
+- Tasks completed
+- XP earned
+- Current streak
+- Completed tasks
+
+### Completed Task Details
+
+The student can select a completed task and view its details.
+
+A **Back to Progress** action allows them to return to their progress.
+
 ## What Changed
 
-The main change was reducing the scope to one complete user flow.
+We extended the original Week 4 task flow rather than creating a separate feature.
 
-Instead of building many incomplete features, we focused on making one experience clear and usable.
+The original flow was:
+
+**Today's Task → Task Details → Task Complete**
+
+It is now:
+
+**Today's Task → Task Details → Task Complete → My Progress → Completed Task**
 
 ## What We Parked
 
-Additional Pathfinder features were left out of this MVP so we could focus on the core task experience.
+We deliberately did not add:
+
+- Career recommendations
+- Quizzes
+- Career matching
+- Mentors
+- Roadmaps
+- Social features
+- Complex analytics
+
+The focus remained on building one small, functional improvement.
 
 ## Review and Testing
 
 The main things to check are:
 
-- Can the student move through all three screens?
-- Can the student complete the task?
-- Does the XP update correctly?
-- Does the interface work across different screen sizes?
+- Can the student complete a task?
+- Can they navigate to My Progress?
+- Is the completed task displayed correctly?
+- Are XP and progress displayed correctly?
+- Can the student open the completed task?
+- Can they return to My Progress?
+- Does the existing Week 4 flow still work?
 
 ## Challenges
 
-The main challenge was keeping the scope small.
+The main challenge was deciding how much progress information the student actually needs.
 
-The original product idea was much larger, so we had to decide what was necessary for the first version.
+We wanted to make progress visible without turning the MVP into a complicated dashboard.
 
 ## What I Learned
 
-- A smaller MVP is easier to build and test.
-- One complete flow is better than many unfinished features.
-- Reducing scope is an important product decision.
-- Building in small steps makes it easier to identify problems.
+- A product can be expanded by extending an existing user journey.
+- Progress should help users understand what they have accomplished.
+- New features should support the core product loop rather than distract from it.
+- Keeping the flow small makes it easier to build and test.
 
 ## Current Status
 
 **MVP / Prototype**
 
-The three-screen task flow has been built.
+The original three-screen task flow has been extended with a simple progress-tracking experience.
 
-The next step is to test the experience and decide what should be improved next.
+The next step is to test the combined flow and identify what should be improved next.
