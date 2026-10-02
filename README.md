@@ -60,6 +60,32 @@ The My Progress screen gives students a simple view of what they have accomplish
 
 Students can select a completed task and view its details.
 
+### Week 6 — Functional Learning & Exploration
+
+For Week 6, we focused on making learning interactions, progress tracking, and career exploration fully functional and persistent:
+
+#### 1. Task Completion & Progress Update
+
+- Completing a task updates completion state.
+- XP is added to the user's total.
+- The current streak counter increments when a new task is completed.
+- Skills are added.
+- Relevant badges can be unlocked.
+- State persists using Web Storage.
+
+#### 2. Completed Task Review
+
+- Completed tasks can be opened from My Progress.
+- The user can review the original scenario, selected strategy, feedback, skills gained, and badge earned.
+- Completed task state and the user’s selected answer are persisted with Web Storage, while the task’s original content and feedback are reconstructed from the existing task dataset.
+
+#### 3. Career Track Filtering
+
+- Users can filter tasks by All Tracks, Tech & AI, Design & Gaming, Science & Climate, and Future Business.
+- The task grid updates based on the selected track.
+- Existing completion states are preserved.
+- Filtered tasks can still be opened in Task Details.
+
 ## Key Product Decision
 
 Instead of building the full Pathfinder product, we are building the experience in small, complete flows.
@@ -90,16 +116,16 @@ We use clear layouts, rounded elements and friendly colours to keep the experien
 
 ## Project Status
 
-**MVP / Prototype**
+**MVP / Functional Prototype**
 
 The current version includes:
 
-- A three-screen task experience
-- Task completion
-- XP feedback
-- Progress tracking
-- Completed task details
+- Interactive task experience with scenario evaluation and feedback
+- Real-time XP, streak tracking, skill acquisition, and badge unlocks
+- Persistent progress and completed task history using Web Storage
+- Completed task review with scenario, selected strategy, feedback, skills, and badges
+- Career track filtering (All Tracks, Tech & AI, Design & Gaming, Science & Climate, Future Business) with preserved completion states
 
 ## What's Next
 
-The next step is to test the combined experience, collect feedback and decide what should be improved or built next.
+The next step is to test the interactive task completion, review, and track filtering flows with students, gather user feedback on the learning experience, and evaluate next steps such as expanded career tracks and deeper scenario tasks.

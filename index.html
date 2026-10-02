@@ -8,125 +8,180 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Clean Iconify Lucide Icon Library -->
+  <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <!-- App Header / Navigation -->
-  <header class="app-header">
+  <header class="app-header" id="app-header">
     <div class="header-container">
-      <div class="brand" id="brand-home" title="Go to Today's Tasks">
-        <div class="logo-icon">✨</div>
+      <!-- Left: Logo, Name, Supporting Text -->
+      <div class="brand" id="brand-home" title="Pathfinder Home">
+        <div class="logo-icon" id="brand-logo-icon">
+          <iconify-icon icon="lucide:compass" width="20" height="20"></iconify-icon>
+        </div>
         <div class="brand-text">
           <span class="brand-name">PATHFINDER</span>
           <span class="brand-tagline">Career Discovery</span>
         </div>
       </div>
 
-      <!-- Main Navigation Tabs -->
-      <nav class="app-nav">
+      <!-- Centre: Predictable Primary Navigation Tabs -->
+      <nav class="app-nav" id="app-main-nav" aria-label="Main Navigation">
         <button class="nav-tab active" id="nav-today" title="Today's Tasks">
-          🎯 Today's Tasks
+          <iconify-icon icon="lucide:target" width="16" height="16"></iconify-icon>
+          <span>Today's Tasks</span>
         </button>
         <button class="nav-tab" id="nav-progress" title="My Progress">
-          📊 My Progress
+          <iconify-icon icon="lucide:bar-chart-2" width="16" height="16"></iconify-icon>
+          <span>My Progress</span>
         </button>
       </nav>
 
-      <div class="header-stats">
-        <div class="stat-pill streak-pill" title="Daily Streak">
-          <span class="stat-icon">🔥</span>
+      <!-- Right: Restrained Gamification Stats & Profile -->
+      <div class="header-stats" id="header-user-stats">
+        <div class="stat-pill streak-pill" id="header-streak-pill" title="Daily Streak">
+          <iconify-icon icon="lucide:flame" width="15" height="15" class="stat-icon-flame"></iconify-icon>
           <span class="stat-value" id="user-streak">4</span>
           <span class="stat-label">Day Streak</span>
         </div>
-        <div class="stat-pill xp-pill" title="Total Experience Points">
-          <span class="stat-icon">⚡</span>
+        <div class="stat-pill xp-pill" id="header-xp-pill" title="Total Experience Points">
+          <iconify-icon icon="lucide:sparkles" width="15" height="15" class="stat-icon-sparkle"></iconify-icon>
           <span class="stat-value" id="user-xp">750</span>
           <span class="stat-label">XP</span>
         </div>
-        <div class="user-avatar" id="user-avatar" title="Student Profile (My Progress)">
-          <span class="avatar-emoji">🚀</span>
-        </div>
+        <button class="user-avatar-btn" id="user-avatar" title="View Profile Progress" aria-label="Student Profile">
+          <iconify-icon icon="lucide:user" width="18" height="18"></iconify-icon>
+        </button>
       </div>
     </div>
   </header>
 
   <!-- Main View Container -->
-  <main class="app-main">
+  <main class="app-main" id="main-content">
 
-    <!-- ==================== SCREEN 1: TODAY'S TASK ==================== -->
-    <section id="screen-today" class="screen active">
+    <!-- ==================== SCREEN 1: TODAY'S TASK (DASHBOARD) ==================== -->
+    <section id="screen-today" class="screen active" aria-labelledby="today-heading">
       
-      <!-- Welcome Hero Banner -->
-      <div class="hero-banner">
+      <!-- 1. Welcome / Hero Section: Clear, Focused, Tasteful 2D Illustration -->
+      <div class="hero-banner" id="hero-banner-section">
         <div class="hero-content">
-          <div class="welcome-badge">👋 Hello, Future Pioneer!</div>
-          <h1 class="hero-title">What will you explore today?</h1>
-          <p class="hero-subtitle">Complete 5-minute daily micro-tasks to unlock real-world career skills, level up your XP, and discover your dream path.</p>
+          <div class="welcome-badge" id="hero-welcome-badge">
+            <iconify-icon icon="lucide:sparkles" width="14" height="14"></iconify-icon>
+            <span>Hello, Future Pioneer!</span>
+          </div>
+          <h1 class="hero-title" id="today-heading">What will you explore today?</h1>
+          <p class="hero-subtitle">Complete a short challenge, explore a career and build skills through real-world tasks.</p>
+          <div class="hero-actions">
+            <button class="btn-primary" id="btn-hero-explore-today">
+              <span>Explore today's task</span>
+              <iconify-icon icon="lucide:arrow-right" width="16" height="16"></iconify-icon>
+            </button>
+          </div>
         </div>
-        <div class="hero-illustration">
-          <div class="floating-card float-1">
-            <span class="fc-icon">🤖</span> AI Engineer
-          </div>
-          <div class="floating-card float-2">
-            <span class="fc-icon">🎮</span> Game Architect
-          </div>
-          <div class="floating-card float-3">
-            <span class="fc-icon">🛡️</span> Cyber Defender
-          </div>
+
+        <!-- Single tasteful 2D career discovery illustration -->
+        <div class="hero-illustration" id="hero-illustration-box">
+          <svg class="career-2d-illustration" viewBox="0 0 280 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Career exploration workspace illustration">
+            <!-- Desk / Base Line -->
+            <rect x="20" y="160" width="240" height="6" rx="3" fill="#2A364A" />
+            <!-- Laptop / Screen -->
+            <rect x="55" y="65" width="125" height="85" rx="8" fill="#172033" stroke="#2A364A" stroke-width="2" />
+            <rect x="65" y="75" width="105" height="65" rx="4" fill="#0F172A" />
+            <!-- Window bars inside laptop -->
+            <rect x="75" y="85" width="40" height="4" rx="2" fill="#8B7CF6" />
+            <rect x="75" y="95" width="85" height="4" rx="2" fill="#2A364A" />
+            <rect x="75" y="105" width="65" height="4" rx="2" fill="#2A364A" />
+            <rect x="75" y="115" width="75" height="4" rx="2" fill="#A8C7FA" opacity="0.8" />
+            <!-- Laptop base stand -->
+            <path d="M45 150H190L180 156H55L45 150Z" fill="#1D293D" stroke="#2A364A" stroke-width="2" />
+            <!-- Idea Compass / Rocket Floating Symbol -->
+            <circle cx="215" cy="85" r="32" fill="#172033" stroke="#8B7CF6" stroke-width="2" />
+            <path d="M215 65L221 82L235 85L221 88L215 105L209 88L195 85L209 82L215 65Z" fill="#8B7CF6" />
+            <!-- Compass needle dot -->
+            <circle cx="215" cy="85" r="3" fill="#0F172A" />
+            <!-- Career Skill Pill 1 -->
+            <g transform="translate(180, 130)">
+              <rect x="0" y="0" width="85" height="24" rx="12" fill="#1D293D" stroke="#2A364A" stroke-width="1.5" />
+              <circle cx="12" cy="12" r="4" fill="#A7E8D0" />
+              <text x="24" y="15" fill="#E2E8F0" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="600">AI Prompt</text>
+            </g>
+            <!-- Career Skill Pill 2 -->
+            <g transform="translate(25, 40)">
+              <rect x="0" y="0" width="90" height="24" rx="12" fill="#1D293D" stroke="#2A364A" stroke-width="1.5" />
+              <circle cx="12" cy="12" r="4" fill="#8B7CF6" />
+              <text x="24" y="15" fill="#E2E8F0" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="600">Game Design</text>
+            </g>
+          </svg>
         </div>
       </div>
 
-      <!-- Featured Daily Spotlight Task -->
-      <div class="spotlight-section">
+      <!-- 2. Today's Spotlight Task: High Hierarchy, Restrained, Obvious Primary CTA -->
+      <section class="spotlight-section" id="spotlight-task-section" aria-labelledby="spotlight-title">
         <div class="section-header">
-          <h2 class="section-title">🌟 Today's Spotlight Task</h2>
-          <span class="time-badge">Refreshes in 14h</span>
+          <div class="section-title-wrap">
+            <span class="section-eyebrow">TODAY'S SPOTLIGHT</span>
+            <h2 class="section-title" id="spotlight-title">Recommended Daily Challenge</h2>
+          </div>
+          <span class="time-badge" id="spotlight-timer-badge">
+            <iconify-icon icon="lucide:clock" width="13" height="13"></iconify-icon>
+            <span>Refreshes in 14h</span>
+          </span>
         </div>
         <div class="spotlight-card" id="featured-task-card">
           <!-- Populated by JS -->
         </div>
-      </div>
+      </section>
 
-      <!-- Task Discovery & Filter Bar -->
-      <div class="discovery-section">
+      <!-- 3. Career Exploration & Filter Bar -->
+      <section class="discovery-section" id="explore-careers-section" aria-labelledby="explore-title">
         <div class="section-header">
-          <h2 class="section-title">🎯 Explore Careers</h2>
-          <div class="category-filters">
-            <button class="filter-chip active" data-category="all">All Tracks</button>
-            <button class="filter-chip" data-category="tech">Tech & AI</button>
-            <button class="filter-chip" data-category="creative">Design & Gaming</button>
-            <button class="filter-chip" data-category="eco">Science & Climate</button>
-            <button class="filter-chip" data-category="business">Future Business</button>
+          <div class="section-title-wrap">
+            <h2 class="section-title" id="explore-title">Explore Careers</h2>
+            <p class="section-subtitle">Discover diverse career paths through bite-sized interactive micro-tasks.</p>
+          </div>
+          <!-- Restrained Filters with subtle pill style -->
+          <div class="category-filters" id="category-filter-chips" role="tablist" aria-label="Career Track Filters">
+            <button class="filter-chip active" data-category="all" role="tab" aria-selected="true">All Tracks</button>
+            <button class="filter-chip" data-category="tech" role="tab" aria-selected="false">Tech & AI</button>
+            <button class="filter-chip" data-category="creative" role="tab" aria-selected="false">Design & Gaming</button>
+            <button class="filter-chip" data-category="eco" role="tab" aria-selected="false">Science & Climate</button>
+            <button class="filter-chip" data-category="business" role="tab" aria-selected="false">Future Business</button>
           </div>
         </div>
 
         <!-- Task Cards Grid -->
-        <div class="task-grid" id="task-grid">
+        <div class="task-grid" id="task-grid" aria-live="polite">
           <!-- Populated by JS -->
         </div>
-      </div>
+      </section>
 
-      <!-- User Progress & Unlocked Badges Bar -->
-      <div class="badges-section">
+      <!-- 4. User Progress & Unlocked Badges Bar -->
+      <section class="badges-section" id="unlocked-badges-section" aria-labelledby="badges-heading">
         <div class="section-header">
-          <h2 class="section-title">🏆 Your Unlocked Career Badges</h2>
-          <span class="badge-count-text" id="badge-count-text">2 of 6 Unlocked</span>
+          <div class="section-title-wrap">
+            <h2 class="section-title" id="badges-heading">Your Unlocked Career Badges</h2>
+            <p class="section-subtitle">Earn badges as you test real-world scenarios and discover future tracks.</p>
+          </div>
+          <span class="badge-count-text" id="badge-count-text">1 of 6 Unlocked</span>
         </div>
         <div class="badges-row" id="badges-container">
           <!-- Populated by JS -->
         </div>
-      </div>
+      </section>
 
     </section>
 
-    <!-- ==================== SCREEN 2: TASK DETAILS ==================== -->
-    <section id="screen-details" class="screen">
+    <!-- ==================== SCREEN 2: TASK DETAILS (INTERACTIVE STUDIO) ==================== -->
+    <section id="screen-details" class="screen" aria-labelledby="detail-mission-title">
       
       <!-- Back Navigation Header -->
-      <div class="details-top-bar">
+      <div class="details-top-bar" id="detail-top-nav">
         <button class="btn-back" id="btn-back-to-today">
-          <span class="arrow">←</span> Back to Today's Tasks
+          <iconify-icon icon="lucide:arrow-left" width="16" height="16"></iconify-icon>
+          <span>Back to Today's Tasks</span>
         </button>
         <span class="details-category-pill" id="detail-category-pill">Tech & AI</span>
       </div>
@@ -142,11 +197,11 @@
       </div>
 
       <!-- Interactive Micro-Task Activity Container -->
-      <div class="activity-container">
+      <div class="activity-container" id="task-activity-container">
         <div class="activity-header">
           <div class="step-indicator">
             <span class="step-badge">Interactive Mission</span>
-            <span class="step-progress-text" id="step-progress-text">Step 1 of 2</span>
+            <span class="step-progress-text" id="step-progress-text">Step 1 of 1</span>
           </div>
           <h2 class="activity-title" id="detail-mission-title">Mission Overview</h2>
         </div>
@@ -158,18 +213,21 @@
 
         <!-- Feedback / Hint Box -->
         <div class="feedback-box" id="feedback-box" style="display: none;">
-          <div class="feedback-icon" id="feedback-icon">💡</div>
+          <div class="feedback-icon" id="feedback-icon">
+            <iconify-icon icon="lucide:info" width="18" height="18"></iconify-icon>
+          </div>
           <div class="feedback-text" id="feedback-text">Select an option above to test your skills!</div>
         </div>
 
         <!-- Complete Action Bar -->
         <div class="activity-footer">
           <div class="reward-preview">
-            <span class="reward-icon">⚡</span>
+            <iconify-icon icon="lucide:sparkles" width="16" height="16" class="stat-icon-sparkle"></iconify-icon>
             <span class="reward-text">Completion Reward: <strong id="detail-reward-xp">+150 XP</strong></span>
           </div>
           <button class="btn-primary btn-complete-task" id="btn-submit-task" disabled>
-            Complete Task & Claim XP ✨
+            <span>Complete Task & Claim XP</span>
+            <iconify-icon icon="lucide:check" width="16" height="16"></iconify-icon>
           </button>
         </div>
       </div>
@@ -177,24 +235,27 @@
     </section>
 
     <!-- ==================== SCREEN 3: TASK COMPLETE ==================== -->
-    <section id="screen-complete" class="screen">
+    <section id="screen-complete" class="screen" aria-labelledby="complete-screen-title">
       
       <!-- Canvas for Celebratory Confetti -->
       <canvas id="confetti-canvas"></canvas>
 
-      <div class="complete-card">
-        <div class="celebration-badge">
-          <span class="badge-sparkle">✨</span>
-          <span class="badge-icon" id="complete-icon">🎉</span>
+      <div class="complete-card" id="mission-complete-card">
+        <div class="celebration-badge" id="complete-celebration-badge">
+          <span class="badge-icon" id="complete-icon">
+            <iconify-icon icon="lucide:trophy" width="36" height="36"></iconify-icon>
+          </span>
         </div>
 
-        <h1 class="complete-title">Mission Accomplished!</h1>
-        <p class="complete-subtitle">Great job! You've taken another step toward discovering your future career.</p>
+        <h1 class="complete-title" id="complete-screen-title">Mission Accomplished!</h1>
+        <p class="complete-subtitle">Great job! You've taken another practical step toward discovering your future career.</p>
 
         <!-- XP & Streak Gain Banner -->
         <div class="rewards-summary-box">
           <div class="reward-stat-item">
-            <span class="rs-icon">⚡</span>
+            <div class="rs-icon-box rs-xp">
+              <iconify-icon icon="lucide:sparkles" width="20" height="20"></iconify-icon>
+            </div>
             <div class="rs-data">
               <span class="rs-value" id="gained-xp">+150 XP</span>
               <span class="rs-label">XP Earned</span>
@@ -202,7 +263,9 @@
           </div>
           <div class="divider-vertical"></div>
           <div class="reward-stat-item">
-            <span class="rs-icon">🔥</span>
+            <div class="rs-icon-box rs-streak">
+              <iconify-icon icon="lucide:flame" width="20" height="20"></iconify-icon>
+            </div>
             <div class="rs-data">
               <span class="rs-value" id="gained-streak">+1 Day</span>
               <span class="rs-label">Streak Active</span>
@@ -212,7 +275,10 @@
 
         <!-- Skills Unlocked List -->
         <div class="unlocked-skills-card">
-          <h3 class="unlocked-title">🧠 Skills Added to Your Pathfinder Profile</h3>
+          <h3 class="unlocked-title">
+            <iconify-icon icon="lucide:check-circle" width="16" height="16" class="text-mint"></iconify-icon>
+            <span>Skills Added to Your Pathfinder Profile</span>
+          </h3>
           <div class="skills-tags-row" id="complete-skills-tags">
             <!-- Populated by JS -->
           </div>
@@ -220,7 +286,9 @@
 
         <!-- Unlocked Badge Highlight (if any) -->
         <div class="new-badge-unlocked" id="new-badge-unlocked-box">
-          <div class="nb-icon" id="complete-badge-icon">🏆</div>
+          <div class="nb-icon" id="complete-badge-icon">
+            <iconify-icon icon="lucide:award" width="28" height="28"></iconify-icon>
+          </div>
           <div class="nb-info">
             <span class="nb-tag">BADGE UNLOCKED</span>
             <h4 class="nb-title" id="complete-badge-title">AI Prompt Pioneer</h4>
@@ -229,7 +297,10 @@
 
         <!-- Recommended Related Careers -->
         <div class="recommendations-box">
-          <h4 class="rec-title">🚀 Careers matching this skill set:</h4>
+          <h4 class="rec-title">
+            <iconify-icon icon="lucide:compass" width="15" height="15"></iconify-icon>
+            <span>Careers matching this skill set:</span>
+          </h4>
           <div class="rec-chips-row" id="complete-rec-chips">
             <!-- Populated by JS -->
           </div>
@@ -237,14 +308,16 @@
 
         <!-- Action Buttons -->
         <div class="complete-actions">
-          <button class="btn-primary btn-large" id="btn-finish-return">
-            Back to Today's Tasks
+          <button class="btn-primary btn-large" id="btn-try-next">
+            <span>Explore Next Task</span>
+            <iconify-icon icon="lucide:arrow-right" width="16" height="16"></iconify-icon>
           </button>
           <button class="btn-secondary btn-large" id="btn-view-progress">
-            View My Progress 📊
+            <span>View My Progress</span>
+            <iconify-icon icon="lucide:bar-chart-2" width="16" height="16"></iconify-icon>
           </button>
-          <button class="btn-secondary btn-large" id="btn-try-next">
-            Explore Next Task →
+          <button class="btn-tertiary" id="btn-finish-return">
+            <span>Back to Today's Tasks</span>
           </button>
         </div>
       </div>
@@ -252,47 +325,59 @@
     </section>
 
     <!-- ==================== SCREEN 4: MY PROGRESS ==================== -->
-    <section id="screen-progress" class="screen">
+    <section id="screen-progress" class="screen" aria-labelledby="progress-heading">
       
       <!-- Top Navigation Bar -->
       <div class="details-top-bar">
         <button class="btn-back" id="btn-progress-back-to-today">
-          <span class="arrow">←</span> Back to Today's Tasks
+          <iconify-icon icon="lucide:arrow-left" width="16" height="16"></iconify-icon>
+          <span>Back to Today's Tasks</span>
         </button>
-        <span class="details-category-pill">Student Progress</span>
+        <span class="details-category-pill">Student Development</span>
       </div>
 
       <!-- Progress Overview Hero Banner -->
-      <div class="progress-hero">
+      <div class="progress-hero" id="progress-summary-card">
         <div class="progress-hero-content">
-          <div class="welcome-badge">📊 Career Journey Overview</div>
-          <h1 class="hero-title">Your Progress & Mastery</h1>
+          <div class="welcome-badge">
+            <iconify-icon icon="lucide:bar-chart-2" width="14" height="14"></iconify-icon>
+            <span>Career Journey Overview</span>
+          </div>
+          <h1 class="hero-title" id="progress-heading">Your Progress & Mastery</h1>
           <p class="hero-subtitle">Track your career exploration milestones, completed micro-tasks, unlocked badges, and acquired skill set.</p>
         </div>
         <div class="progress-stats-grid">
           <div class="progress-stat-card">
-            <span class="ps-icon">⚡</span>
+            <div class="ps-icon-wrapper xp-color">
+              <iconify-icon icon="lucide:sparkles" width="20" height="20"></iconify-icon>
+            </div>
             <div class="ps-data">
               <span class="ps-val" id="progress-total-xp">750</span>
               <span class="ps-label">Total XP Earned</span>
             </div>
           </div>
           <div class="progress-stat-card">
-            <span class="ps-icon">🔥</span>
+            <div class="ps-icon-wrapper streak-color">
+              <iconify-icon icon="lucide:flame" width="20" height="20"></iconify-icon>
+            </div>
             <div class="ps-data">
               <span class="ps-val" id="progress-streak">4 Days</span>
               <span class="ps-label">Current Streak</span>
             </div>
           </div>
           <div class="progress-stat-card">
-            <span class="ps-icon">🎯</span>
+            <div class="ps-icon-wrapper tasks-color">
+              <iconify-icon icon="lucide:check-circle" width="20" height="20"></iconify-icon>
+            </div>
             <div class="ps-data">
               <span class="ps-val" id="progress-completed-count">1 of 6</span>
               <span class="ps-label">Tasks Completed</span>
             </div>
           </div>
           <div class="progress-stat-card">
-            <span class="ps-icon">🏆</span>
+            <div class="ps-icon-wrapper badges-color">
+              <iconify-icon icon="lucide:award" width="20" height="20"></iconify-icon>
+            </div>
             <div class="ps-data">
               <span class="ps-val" id="progress-badge-count">1 of 6</span>
               <span class="ps-label">Badges Unlocked</span>
@@ -302,7 +387,7 @@
       </div>
 
       <!-- Overall Completion Progress Bar Card -->
-      <div class="completion-bar-card">
+      <div class="completion-bar-card" id="completion-bar-container">
         <div class="cbc-header">
           <span class="cbc-title">Exploration Mastery Progress</span>
           <span class="cbc-percentage" id="progress-percentage">17% Complete</span>
@@ -313,10 +398,16 @@
       </div>
 
       <!-- Completed Tasks Grid Section -->
-      <div class="discovery-section">
+      <section class="discovery-section" aria-labelledby="completed-tasks-title">
         <div class="section-header">
-          <h2 class="section-title">✅ Completed Micro-Tasks</h2>
-          <span class="time-badge" id="completed-count-badge">1 Task Done</span>
+          <div class="section-title-wrap">
+            <h2 class="section-title" id="completed-tasks-title">Completed Micro-Tasks</h2>
+            <p class="section-subtitle">Review scenarios you've mastered and their career implications.</p>
+          </div>
+          <span class="time-badge completed-badge-mint" id="completed-count-badge">
+            <iconify-icon icon="lucide:check" width="13" height="13"></iconify-icon>
+            <span>1 Task Done</span>
+          </span>
         </div>
 
         <!-- Grid of Completed Tasks -->
@@ -326,44 +417,56 @@
 
         <!-- Empty State (Hidden when tasks are completed) -->
         <div class="empty-state-card" id="completed-empty-state" style="display: none;">
-          <div class="empty-icon">🎯</div>
-          <h3>No tasks completed yet!</h3>
+          <div class="empty-icon">
+            <iconify-icon icon="lucide:target" width="36" height="36"></iconify-icon>
+          </div>
+          <h3>No tasks completed yet</h3>
           <p>Start your first micro-task from Today's Tasks to unlock career insights and earn XP.</p>
-          <button class="btn-primary" id="btn-empty-start">Explore Today's Tasks →</button>
+          <button class="btn-primary" id="btn-empty-start">
+            <span>Explore Today's Tasks</span>
+            <iconify-icon icon="lucide:arrow-right" width="16" height="16"></iconify-icon>
+          </button>
         </div>
-      </div>
+      </section>
 
       <!-- Mastered Skills Section -->
-      <div class="badges-section" style="margin-bottom: 36px;">
+      <section class="badges-section" style="margin-bottom: 32px;" aria-labelledby="skills-mastered-title">
         <div class="section-header">
-          <h2 class="section-title">🧠 Acquired Career Skills</h2>
+          <div class="section-title-wrap">
+            <h2 class="section-title" id="skills-mastered-title">Acquired Career Skills</h2>
+            <p class="section-subtitle">Hands-on skills verified through simulated professional decisions.</p>
+          </div>
           <span class="badge-count-text" id="skills-count-text">3 Skills Mastered</span>
         </div>
         <div class="skills-tags-row" id="progress-acquired-skills">
           <!-- Populated by JS -->
         </div>
-      </div>
+      </section>
 
       <!-- Unlocked Badges Showcase -->
-      <div class="badges-section">
+      <section class="badges-section" aria-labelledby="unlocked-showcase-title">
         <div class="section-header">
-          <h2 class="section-title">🏆 Unlocked Badges Showcase</h2>
+          <div class="section-title-wrap">
+            <h2 class="section-title" id="unlocked-showcase-title">Unlocked Badges Showcase</h2>
+            <p class="section-subtitle">Milestones earned along your career discovery path.</p>
+          </div>
           <span class="badge-count-text" id="progress-badge-summary">1 of 6 Unlocked</span>
         </div>
         <div class="badges-row" id="progress-badges-container">
           <!-- Populated by JS -->
         </div>
-      </div>
+      </section>
 
     </section>
 
     <!-- ==================== SCREEN 5: COMPLETED TASK DETAILS ==================== -->
-    <section id="screen-completed-details" class="screen">
+    <section id="screen-completed-details" class="screen" aria-labelledby="completed-detail-mission-title">
       
       <!-- Back Navigation Bar -->
       <div class="details-top-bar">
         <button class="btn-back" id="btn-completed-back-to-progress">
-          <span class="arrow">←</span> Back to My Progress
+          <iconify-icon icon="lucide:arrow-left" width="16" height="16"></iconify-icon>
+          <span>Back to My Progress</span>
         </button>
         <span class="details-category-pill" id="completed-detail-category-pill">Tech & AI</span>
       </div>
@@ -382,8 +485,9 @@
       <div class="activity-container">
         <div class="activity-header">
           <div class="step-indicator">
-            <span class="step-badge" style="background: rgba(16,185,129,0.2); color: #34d399; border-color: rgba(16,185,129,0.4);">
-              Task Completed ✓
+            <span class="step-badge step-badge-completed">
+              <iconify-icon icon="lucide:check" width="12" height="12"></iconify-icon>
+              <span>Task Completed</span>
             </span>
             <span class="step-progress-text" id="completed-detail-date">Mastered</span>
           </div>
@@ -392,14 +496,14 @@
 
         <div class="activity-body">
           <div class="activity-scenario-card">
-            <strong>Scenario Encountered:</strong><br>
-            <span id="completed-detail-scenario">Prompt text...</span>
+            <strong>Scenario Encountered:</strong>
+            <p id="completed-detail-scenario" style="margin-top: 6px;">Prompt text...</p>
           </div>
 
           <!-- Mastered Strategy Card -->
           <div class="completed-solution-card">
             <div class="solution-header">
-              <span class="solution-badge">✨ Your Selected Strategy</span>
+              <span class="solution-badge">Your Selected Strategy</span>
             </div>
             <div class="solution-text" id="completed-detail-choice">
               Selected option text...
@@ -411,7 +515,10 @@
 
           <!-- Skills Acquired Card -->
           <div class="unlocked-skills-card" style="margin-top: 24px;">
-            <h3 class="unlocked-title">🧠 Skills Mastered in This Task:</h3>
+            <h3 class="unlocked-title">
+              <iconify-icon icon="lucide:check-circle" width="16" height="16" class="text-mint"></iconify-icon>
+              <span>Skills Mastered in This Task:</span>
+            </h3>
             <div class="skills-tags-row" id="completed-detail-skills">
               <!-- Populated by JS -->
             </div>
@@ -419,7 +526,9 @@
 
           <!-- Badge Unlocked Highlight -->
           <div class="new-badge-unlocked" id="completed-detail-badge-box">
-            <div class="nb-icon" id="completed-detail-badge-icon">🏆</div>
+            <div class="nb-icon" id="completed-detail-badge-icon">
+              <iconify-icon icon="lucide:award" width="28" height="28"></iconify-icon>
+            </div>
             <div class="nb-info">
               <span class="nb-tag">BADGE EARNED</span>
               <h4 class="nb-title" id="completed-detail-badge-name">Badge Name</h4>
@@ -428,7 +537,10 @@
 
           <!-- Recommended Related Careers -->
           <div class="recommendations-box">
-            <h4 class="rec-title">🚀 Recommended Next Steps & Career Paths:</h4>
+            <h4 class="rec-title">
+              <iconify-icon icon="lucide:compass" width="15" height="15"></iconify-icon>
+              <span>Recommended Next Steps & Career Paths:</span>
+            </h4>
             <div class="rec-chips-row" id="completed-detail-recs">
               <!-- Populated by JS -->
             </div>
@@ -438,10 +550,12 @@
         <!-- Footer Actions -->
         <div class="activity-footer" style="justify-content: space-between;">
           <button class="btn-secondary" id="btn-return-progress-bottom">
-            ← Return to My Progress
+            <iconify-icon icon="lucide:arrow-left" width="16" height="16"></iconify-icon>
+            <span>Back to My Progress</span>
           </button>
           <button class="btn-primary" id="btn-explore-more">
-            Explore Today's Tasks →
+            <span>Today's Tasks</span>
+            <iconify-icon icon="lucide:arrow-right" width="16" height="16"></iconify-icon>
           </button>
         </div>
       </div>
@@ -451,8 +565,14 @@
   </main>
 
   <!-- Global Footer -->
-  <footer class="app-footer">
-    <p>Pathfinder © 2026 • Designed for Future Innovators aged 13–17</p>
+  <footer class="app-footer" id="app-footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <iconify-icon icon="lucide:compass" width="16" height="16" class="text-lavender"></iconify-icon>
+        <span>Pathfinder</span>
+      </div>
+      <p class="footer-meta">Empowering students aged 13–17 to discover exciting careers through real-world micro-tasks.</p>
+    </div>
   </footer>
 
   <script src="app.js"></script>
